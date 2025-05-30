@@ -20,7 +20,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             window.scrollTo({
-                top: targetElement.offsetTop - 80,
+                top: targetElement.offsetTop - 60, // Уменьшено из-за компактного хедера
                 behavior: 'smooth'
             });
         }
@@ -30,7 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Эффект "липкого" хедера
 const header = document.getElementById('main-header');
 window.addEventListener('scroll', function () {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 80) { // Уменьшено
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
@@ -48,7 +48,7 @@ function animateElements() {
 
         elements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
-            const animationPoint = windowHeight - 100;
+            const animationPoint = windowHeight - 80;
 
             if (elementPosition < animationPoint) {
                 element.classList.add('animated');
@@ -56,10 +56,7 @@ function animateElements() {
         });
     };
 
-    // Запускаем сразу, чтобы проверить видимые элементы
     animateOnScroll();
-
-    // И при каждом скролле
     window.addEventListener('scroll', animateOnScroll);
 }
 
@@ -79,7 +76,6 @@ closeModal.addEventListener('click', function () {
     document.body.style.overflow = '';
 });
 
-// Закрытие модального окна при клике вне его
 applyModal.addEventListener('click', function (e) {
     if (e.target === applyModal) {
         applyModal.classList.remove('active');
@@ -91,15 +87,9 @@ applyModal.addEventListener('click', function (e) {
 const applicationForm = document.getElementById('application-form');
 applicationForm.addEventListener('submit', function (e) {
     e.preventDefault();
-
-    // Здесь можно добавить AJAX-запрос для отправки данных
     alert('Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
-
-    // Закрываем модальное окно
     applyModal.classList.remove('active');
     document.body.style.overflow = '';
-
-    // Очищаем форму
     applicationForm.reset();
 });
 
@@ -121,3 +111,21 @@ buttons.forEach(button => {
 setTimeout(() => {
     document.body.style.opacity = '1';
 }, 100);
+
+// Бургер-меню
+const burgerMenu = document.querySelector('.burger-menu');
+const navUl = document.querySelector('nav ul');
+
+burgerMenu.addEventListener('click', () => {
+    burgerMenu.classList.toggle('active');
+    navUl.classList.toggle('active');
+});
+
+// Кнопка "Наверх"
+const scrollToTopBtn = document.querySelector('.scroll-to-top');
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
