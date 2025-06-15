@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель колледжа</title>
+  <link rel="stylesheet" href="styles/admin.style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Админ-панель колледжа</h1>
+
+    <!-- Секция преподавателей -->
+    <section>
+      <h2>Преподаватели</h2>
+      <button onclick="showAddForm('teacher')">Добавить преподавателя</button>
+      <div id="teacher-form" class="form" style="display: none;">
+        <input type="text" id="teacher-name" placeholder="ФИО преподавателя">
+        <button onclick="addTeacher()">Сохранить</button>
+        <button onclick="hideForm('teacher')">Отмена</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ФИО</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="teachers-table"></tbody>
+      </table>
+    </section>
+
+    <!-- Секция предметов -->
+    <section>
+      <h2>Предметы</h2>
+      <button onclick="showAddForm('subject')">Добавить предмет</button>
+      <div id="subject-form" class="form" style="display: none;">
+        <input type="text" id="subject-name" placeholder="Название предмета">
+        <button onclick="addSubject()">Сохранить</button>
+        <button onclick="hideForm('subject')">Отмена</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="subjects-table"></tbody>
+      </table>
+    </section>
+
+    <!-- Секция групп -->
+    <section>
+      <h2>Группы</h2>
+      <button onclick="showAddForm('group')">Добавить группу</button>
+      <div id="group-form" class="form" style="display: none;">
+        <input type="text" id="group-name" placeholder="Название группы">
+        <button onclick="addGroup()">Сохранить</button>
+        <button onclick="hideForm('group')">Отмена</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="groups-table"></tbody>
+      </table>
+    </section>
+
+    <!-- Секция связей -->
+    <section>
+      <h2>Связи Преподаватель-Предмет-Группа</h2>
+      <button onclick="showAddForm('tsg')">Добавить связь</button>
+      <div id="tsg-form" class="form" style="display: none;">
+        <select id="tsg-teacher"></select>
+        <select id="tsg-subject"></select>
+        <select id="tsg-group"></select>
+        <button onclick="addTSG()">Сохранить</button>
+        <button onclick="hideForm('tsg')">Отмена</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Преподаватель</th>
+            <th>Предмет</th>
+            <th>Группа</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="tsg-table"></tbody>
+      </table>
+    </section>
+  </div>
+  <script src="scripts/admin.script.js"></script>
+</body>
+
+</html>
