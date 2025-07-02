@@ -1,0 +1,10 @@
+server:
+  port: 8080
+database:
+  host: postgres
+  port: 5432
+  user: kktd_user
+  password: 111
+  name: sdo_db
+redis:
+  addr: redis:6379

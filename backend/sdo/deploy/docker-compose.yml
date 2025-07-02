@@ -1,0 +1,47 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: sdo-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: kktd_user
+      DB_PASSWORD: 111
+      DB_NAME: sdo_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SECRET_KEY: EuuwIes2/2fDPnsgCuCWsOgX/lOLOhnKl29+HBgwiJ8=y
+      APP_PORT: "8080"
+    restart: unless-stopped
+  postgres:
+    image: postgres:16.9
+    container_name: sdo-postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: sdo_db
+      POSTGRES_USER: kktd_user
+      POSTGRES_PASSWORD: 111
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kktd_user -d sdo_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  redis:
+    image: redis:7
+    container_name: sdo-redis
+    ports:
+      - "6379:6379"
+volumes:
+  pgdata:

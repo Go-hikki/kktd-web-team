@@ -1,0 +1,9 @@
+basePath: /
+host: localhost:8080
+info:
+  contact: {}
+  description: API for Student Data Organizer
+  title: SDO API
+  version: "1.0"
+paths: {}
+swagger: "2.0"

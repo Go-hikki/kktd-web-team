@@ -1,0 +1,8 @@
+.git
+.gitignore
+.env
+*.md
+*.png
+*.json
+vendor/
+schedule-api/
